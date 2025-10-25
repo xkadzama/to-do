@@ -19,3 +19,16 @@
    ```bash
    git clone https://github.com/xkadzama/to-do.git
    cd to-do
+   ```
+
+2. **Установка зависимостей**
+   ```bash
+   pip install -r requirements.txt
+   ```
+   
+3. **Запуск проекта**
+   ```bash
+   python app.py
+   ```
+   
+   
