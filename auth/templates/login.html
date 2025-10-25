@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Roboto, Arial, sans-serif;
+            background: #121212;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: #1e1e1e;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.6);
+            width: 360px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ff7b00;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        label {
+            color: #ff7b00;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 95%;
+            padding: 10px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            background: #2a2a2a;
+            color: #fff;
+            font-size: 15px;
+            transition: all 0.2s ease;
+        }
+
+        input:focus {
+            background: #333;
+            box-shadow: 0 0 0 2px #ff7b00;
+        }
+
+        .error {
+            color: #ff3c00;
+            font-size: 13px;
+            margin-top: -8px;
+        }
+
+        /* чекбокс и label */
+        .remember {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #ddd;
+            font-size: 14px;
+        }
+
+        input[type="checkbox"] {
+            accent-color: #ff7b00;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+        }
+
+        /* стили кнопки */
+        input[type="submit"],
+        button {
+            width: 100%;
+            background: #ff7b00;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        input[type="submit"]:hover,
+        button:hover {
+            background: #e56d00;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Авторизация</h1>
+    <form action="{{ url_for('auth.login') }}" method="POST">
+        {{ form.hidden_tag() }}
+
+        <div>
+            {{ form.email.label }}
+            {{ form.email }}
+            {% for error in form.email.errors %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div>
+            {{ form.password.label }}
+            {{ form.password }}
+            {% for error in form.password.errors %}
+                <div class="error">{{ error }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="remember">
+            {{ form.remember }}
+            {{ form.remember.label }}
+        </div>
+
+        <div>
+            {{ form.submit }}
+        </div>
+    </form>
+</div>
+</body>
+</html>

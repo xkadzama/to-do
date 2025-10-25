@@ -1,0 +1,290 @@
+<style>
+/* Базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    padding: 40px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Контейнер */
+.container {
+    background: #111111;
+    margin-top: 40px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(255, 69, 0, 0.1);
+    border: 1px solid #333333;
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Декоративный элемент */
+.container::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(255, 69, 0, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+}
+
+/* Заголовок */
+h1 {
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 30px;
+    font-size: 2.2em;
+    font-weight: 700;
+    text-shadow: 0 4px 8px rgba(255, 69, 0, 0.3);
+    position: relative;
+    padding-bottom: 15px;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #ff4500, #ff8c00);
+    border-radius: 2px;
+}
+
+/* Навигационные ссылки */
+.container > a {
+    display: inline-block;
+    margin: 0 10px 25px 0;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    color: #ff8c00;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 69, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.container > a:hover {
+    background: rgba(255, 69, 0, 0.1);
+    color: #ff4500;
+    transform: translateY(-2px);
+    border-color: rgba(255, 69, 0, 0.4);
+}
+
+/* Задачи */
+.task {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 18px 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 69, 0, 0.1);
+}
+
+.task:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-3px);
+    border-left: 4px solid #ff4500;
+    box-shadow: 0 8px 20px rgba(255, 69, 0, 0.15);
+}
+
+.task a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    font-size: 16px;
+    flex-grow: 1;
+    transition: all 0.3s ease;
+    padding: 5px 0;
+}
+
+.task a:hover {
+    color: #ff8c00;
+    transform: translateX(5px);
+}
+
+/* Форма удаления */
+.task form {
+    margin: 0;
+}
+
+.task button {
+    background: linear-gradient(135deg, #ff3c00, #ff6b00);
+    border: none;
+    color: #000000;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(255, 60, 0, 0.3);
+}
+
+.task button:hover {
+    background: linear-gradient(135deg, #ff6b00, #ff3c00);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(255, 60, 0, 0.4);
+}
+
+.task button:active {
+    transform: translateY(0);
+}
+
+/* Кнопка добавления задачи */
+.add-task {
+    display: block;
+    text-align: center;
+    margin-top: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 15px 25px;
+    background: linear-gradient(135deg, #ff4500, #ff8c00);
+    color: #000000;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 6px 20px rgba(255, 69, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.add-task::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.add-task:hover::before {
+    left: 100%;
+}
+
+.add-task:hover {
+    background: linear-gradient(135deg, #ff8c00, #ff4500);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 69, 0, 0.4);
+}
+
+/* Анимация появления */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.container > * {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.task:nth-child(odd) {
+    animation-delay: 0.1s;
+}
+
+.task:nth-child(even) {
+    animation-delay: 0.2s;
+}
+
+.add-task {
+    animation-delay: 0.3s;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    body {
+        padding: 20px 15px;
+    }
+
+    .container {
+        padding: 30px 25px;
+        margin-top: 20px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    .task {
+        padding: 15px;
+    }
+
+    .container > a {
+        display: block;
+        margin: 0 0 10px 0;
+        text-align: center;
+    }
+}
+
+/* Состояние пустого списка */
+.task:last-child {
+    margin-bottom: 0;
+}
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ToDo</title>
+</head>
+<body>
+<div class="container">
+    <h1>Все задачи</h1>
+
+    {% if current_user.is_authenticated %}
+        <a href="{{ url_for('profile.profile') }}">Профиль</a>
+        <a href="{{ url_for('profile.logout') }}">Выйти</a>
+    {% else %}
+        <a href="{{ url_for('auth.login') }}">Войти</a>
+        <a href="{{ url_for('auth.register') }}">Регистрация</a>
+    {% endif %}
+
+    {% for task in tasks_list %}
+    <div class="task">
+        <a href="#">{{ task.title }}</a>
+
+        {% if current_user.is_authenticated %}
+            <form action="{{ url_for('tasks.delete_task', task_id=task.id) }}" method="POST">
+                <button type="submit">Удалить</button>
+            </form>
+        {% endif %}
+    </div>
+    {% endfor %}
+
+    <a class="add-task" href="{{ url_for('tasks.add_task') }}">Добавить задачу</a>
+</div>
+</body>
+</html>
